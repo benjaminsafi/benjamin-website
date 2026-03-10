@@ -7,42 +7,24 @@
 
 <style>
 
-html{
-scroll-behavior:smooth;
-}
-
 body{
 margin:0;
 direction:rtl;
-font-family:tahoma, sans-serif;
-color:white;
+font-family:tahoma;
 background:black;
-overflow-x:hidden;
-}
-
-canvas{
-position:fixed;
-top:0;
-left:0;
-width:100%;
-height:100%;
-z-index:0;
+color:white;
+text-align:center;
 }
 
 .container{
-position:relative;
-z-index:2;
 max-width:900px;
 margin:60px auto;
-text-align:center;
-background:rgba(0,0,0,0.25);
-padding:40px 25px;
-border-radius:20px;
+padding:20px;
 }
 
 h1{
+color:#00ff41;
 font-size:40px;
-margin-bottom:20px;
 }
 
 h2{
@@ -55,53 +37,34 @@ font-size:20px;
 line-height:1.9;
 }
 
-.highlight{
+.button{
+display:inline-block;
+margin-top:20px;
+padding:12px 20px;
+border:2px solid #00ff41;
+border-radius:10px;
 color:#00ff41;
+text-decoration:none;
 font-weight:bold;
+}
+
+.button:hover{
+background:#00ff41;
+color:black;
 }
 
 .skills span{
 display:inline-block;
 border:1px solid #00ff41;
-padding:8px 14px;
+padding:8px 12px;
 margin:6px;
 border-radius:8px;
-font-size:18px;
-}
-
-.instagram{
-display:inline-block;
-margin-top:20px;
-padding:12px 22px;
-border:2px solid #00ff41;
-border-radius:12px;
-text-decoration:none;
-color:#00ff41;
-font-weight:bold;
-transition:0.3s;
-}
-
-.instagram:hover{
-background:#00ff41;
-color:black;
-}
-
-.project{
-margin-top:15px;
-font-size:18px;
-}
-
-hr{
-margin:40px 0;
-border:1px solid #00ff41;
 }
 
 </style>
 </head>
 
 <body>
-
-<canvas id="matrix"></canvas>
 
 <div class="container">
 
@@ -112,58 +75,43 @@ border:1px solid #00ff41;
 </p>
 
 <p>
-فعلاً در رشته <span class="highlight">Wirtschaftsinformatik</span> تحصیل می‌کنم
-و علاقه زیادی به <span class="highlight">Cybersecurity</span> دارم.
+فعلاً در رشته <b>Wirtschaftsinformatik</b> تحصیل می‌کنم
+و علاقه زیادی به <b>Cybersecurity</b> دارم.
 </p>
 
-<p>
-من و دوستانم که در رشته‌های مختلف تحصیل می‌کنیم
-برای آینده افغانستان در زمینه‌های زیرساخت، تحصیل و کار
-ایده‌ها و برنامه‌های بزرگی داریم.
-</p>
-
-<a class="instagram" href="https://instagram.com/benjamin_safi._" target="_blank">
+<a class="button" href="https://instagram.com/benjamin_safi._" target="_blank">
 Instagram : @benjamin_safi._
 </a>
 
-<hr>
-
-<h2>Skills</h2>
+<h2>مهارت‌ها</h2>
 
 <div class="skills">
+<span>Cybersecurity</span>
 <span>Linux</span>
 <span>Networking</span>
-<span>Cybersecurity</span>
 <span>Python</span>
 <span>Web Development</span>
 </div>
 
-<hr>
-
-<h2>Projects</h2>
-
-<div class="project">
-اولین وبسایتی که در اینترنت ساختم
-</div>
-
-<div class="project">
-پروژه‌های آینده در زمینه Cybersecurity و آموزش
-</div>
-
-<hr>
-
-<h2>Contact</h2>
+<h2>پروژه‌ها</h2>
 
 <p>
-برای همکاری یا اشتراک ایده‌ها
-در اینستاگرام پیام بگذارید
+اولین وب‌سایت شخصی که با GitHub Pages ساختم.
 </p>
 
-<a class="instagram" href="https://instagram.com/benjamin_safi._" target="_blank">
-Message on Instagram
-</a>
+<p>
+پروژه‌های آینده در زمینه Cybersecurity و تکنولوژی.
+</p>
 
-<hr>
+<h2>تماس</h2>
+
+<p>
+برای همکاری یا اشتراک ایده‌ها در اینستاگرام پیام بگذارید.
+</p>
+
+<a class="button" href="https://instagram.com/benjamin_safi._" target="_blank">
+پیام در اینستاگرام
+</a>
 
 <h2>پښتو</h2>
 
@@ -172,60 +120,11 @@ Message on Instagram
 </p>
 
 <p>
-اوس مهال د <span class="highlight">Wirtschaftsinformatik</span> په رشته کې زده کړه کوم
-او د سایبري امنیت سره ډېره علاقه لرم.
-</p>
-
-<p>
-که تاسو هم کومه نظریه لرئ،
-تاسو کولی شئ زموږ له ټیم سره یو ځای شئ.
+اوس مهال د Wirtschaftsinformatik په رشته کې زده کړه کوم
+او د سایبري امنیت سره علاقه لرم.
 </p>
 
 </div>
-
-<script>
-
-const canvas = document.getElementById("matrix");
-const ctx = canvas.getContext("2d");
-
-canvas.height = window.innerHeight;
-canvas.width = window.innerWidth;
-
-const letters="ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
-const fontSize=30;
-const columns=canvas.width/fontSize;
-
-const drops=[];
-
-for(let x=0;x<columns;x++)
-drops[x]=1;
-
-function draw(){
-
-ctx.fillStyle="rgba(0,0,0,0.05)";
-ctx.fillRect(0,0,canvas.width,canvas.height);
-
-ctx.fillStyle="#00ff41";
-ctx.font=fontSize+"px monospace";
-
-for(let i=0;i<drops.length;i++){
-
-const text=letters[Math.floor(Math.random()*letters.length)];
-
-ctx.fillText(text,i*fontSize,drops[i]*fontSize);
-
-if(drops[i]*fontSize>canvas.height && Math.random()>0.975)
-drops[i]=0;
-
-drops[i]++;
-
-}
-
-}
-
-setInterval(draw,40);
-
-</script>
 
 </body>
 </html>
