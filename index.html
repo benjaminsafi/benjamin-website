@@ -1,246 +1,219 @@
-
 <!DOCTYPE html>
 <html lang="fa">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Benjamin Safi | Cybersecurity</title>
+<title>Benjamin Safi</title>
 
 <style>
-html{
-  scroll-behavior:smooth;
-}
 
 body{
-  margin:0;
-  direction:rtl;
-  font-family:tahoma, sans-serif;
-  background:black;
-  color:white;
-  overflow-x:hidden;
+margin:0;
+direction:rtl;
+font-family:tahoma, sans-serif;
+color:white;
+background:black;
+overflow-x:hidden;
+overflow-y:auto;
 }
 
 canvas{
-  position:fixed;
-  top:0;
-  left:0;
-  width:100%;
-  height:100%;
-  z-index:0;
-}
-
-.navbar{
-  position:sticky;
-  top:0;
-  z-index:3;
-  background:rgba(0,0,0,0.65);
-  backdrop-filter:blur(8px);
-  padding:15px 10px;
-  text-align:center;
-  border-bottom:1px solid #00ff41;
-}
-
-.navbar a{
-  color:#00ff41;
-  text-decoration:none;
-  margin:8px 12px;
-  font-weight:bold;
-  display:inline-block;
+position:fixed;
+top:0;
+left:0;
+width:100%;
+height:100%;
+z-index:0;
 }
 
 .container{
-  position:relative;
-  z-index:2;
-  max-width:1000px;
-  margin:40px auto;
-  padding:25px;
-}
-
-.section{
-  background:rgba(0,0,0,0.35);
-  border:1px solid rgba(0,255,65,0.35);
-  border-radius:20px;
-  padding:30px 20px;
-  margin-bottom:25px;
-  box-shadow:0 0 20px rgba(0,255,65,0.15);
-}
-
-.hero{
-  text-align:center;
-  padding:50px 20px;
+position:relative;
+z-index:2;
+max-width:900px;
+margin:60px auto;
+text-align:center;
+background:rgba(0,0,0,0.25);
+padding:40px 25px;
+border-radius:20px;
 }
 
 h1{
-  color:#00ff41;
-  font-size:48px;
-  margin-bottom:10px;
-}
-
-h2{
-  color:#00ff41;
-  margin-bottom:20px;
-  font-size:30px;
+font-size:42px;
+margin-bottom:25px;
 }
 
 p{
-  font-size:21px;
-  line-height:2;
+font-size:24px;
+line-height:2;
+margin-top:18px;
 }
 
 .highlight{
-  color:#00ff41;
-  font-weight:bold;
+color:#00ff41;
+font-weight:bold;
 }
 
-.subtitle{
-  font-size:22px;
-  opacity:0.95;
+.instagram-link{
+display:inline-block;
+margin-top:20px;
+color:#00ff41;
+font-weight:bold;
+text-decoration:none;
+font-size:22px;
+border:2px solid #00ff41;
+padding:12px 20px;
+border-radius:12px;
+transition:0.3s;
 }
 
-.button{
-  display:inline-block;
-  margin-top:20px;
-  padding:14px 24px;
-  border:2px solid #00ff41;
-  border-radius:12px;
-  color:#00ff41;
-  text-decoration:none;
-  font-weight:bold;
-  transition:0.3s;
+.instagram-link:hover{
+background:#00ff41;
+color:black;
 }
 
-.button:hover{
-  background:#00ff41;
-  color:black;
-}
-
-.skills-grid{
-  display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
-  gap:18px;
-}
-
-.skill-box{
-  background:rgba(0,0,0,0.35);
-  border:1px solid #00ff41;
-  border-radius:14px;
-  padding:15px;
-}
-
-.skill-title{
-  margin-bottom:10px;
-  font-weight:bold;
-  color:#00ff41;
-}
-
-.bar{
-  width:100%;
-  height:12px;
-  background:#111;
-  border-radius:999px;
-  overflow:hidden;
-}
-
-.bar-fill{
-  height:100%;
-  background:#00ff41;
-}
-
-.projects{
-  display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
-  gap:18px;
-}
-
-.project-card{
-  border:1px solid #00ff41;
-  border-radius:14px;
-  padding:18px;
-  background:rgba(0,0,0,0.28);
-}
-
-.project-card h3{
-  color:#00ff41;
-  margin-top:0;
-}
-
-.footer{
-  text-align:center;
-  padding:20px;
-  color:#00ff41;
-  opacity:0.9;
-}
-
-.typing{
-  border-left:3px solid #00ff41;
-  display:inline-block;
-  padding-left:8px;
-  min-height:60px;
+hr{
+margin:40px 0;
+border:1px solid #00ff41;
 }
 
 @media (max-width:768px){
-  h1{
-    font-size:34px;
-  }
 
-  h2{
-    font-size:24px;
-  }
-
-  p, .subtitle{
-    font-size:18px;
-  }
-
-  .container{
-    padding:14px;
-  }
-
-  .section{
-    padding:22px 14px;
-  }
+.container{
+margin:30px 15px;
+padding:25px 15px;
 }
+
+h1{
+font-size:30px;
+}
+
+p{
+font-size:18px;
+line-height:1.9;
+}
+
+.instagram-link{
+font-size:18px;
+}
+
+}
+
 </style>
 </head>
+
 <body>
 
 <canvas id="matrix"></canvas>
 
-<div class="navbar">
-  <a href="#home">خانه</a>
-  <a href="#about">درباره من</a>
-  <a href="#skills">مهارت‌ها</a>
-  <a href="#projects">پروژه‌ها</a>
-  <a href="#contact">تماس</a>
-</div>
-
 <div class="container">
 
-  <div class="section hero" id="home">
-    <h1 class="typing" id="typing"></h1>
-    <p class="subtitle">
-      دانشجو، علاقه‌مند به <span class="highlight">Cybersecurity</span>، تکنولوژی و ساختن آینده بهتر
-    </p>
-    <a class="button" href="https://instagram.com/benjamin_safi._" target="_blank">Instagram : @benjamin_safi._</a>
-  </div>
+<h1>سلام، اسم من بنیامین است</h1>
 
-  <div class="section" id="about">
-    <h2>درباره من</h2>
-    <p>
-      سلام، اسم من بنیامین است. ۲۶ سال سن دارم و از ولایت بغلان افغانستان هستم.
-    </p>
-    <p>
-      فعلاً در رشته <span class="highlight">Wirtschaftsinformatik</span> تحصیل می‌کنم.
-      من و دوستانم که در رشته‌های مختلف تحصیل می‌کنیم، برای آینده افغانستان در زمینه‌های
-      زیرساخت، تحصیل و کار ایده‌ها و برنامه‌های بزرگی داریم.
-    </p>
-    <p>
-      اگر شما هم ایده یا نظری دارید، می‌توانید به تیم ما بپیوندید.
-      برای پیوستن به تیم ما در اینستاگرام پیام بگذارید.
-    </p>
-  </div>
+<p>
+۲۶ سال سن دارم و از ولایت بغلان افغانستان هستم.
+</p>
 
-  <div class="section" id="skills">
-    <h2>مهارت‌ها</h2>
-    <div class="skills-grid">
-      <div class="skill-box">
-        <div class="skill-title">Cybersecurity</div>
+<p>
+فعلاً در رشته <span class="highlight">Wirtschaftsinformatik</span> تحصیل می‌کنم.
+من و دوستانم که در رشته‌های مختلف تحصیل می‌کنیم،
+برای آینده افغانستان در زمینه‌های زیرساخت، تحصیل و کار
+ایده‌ها و برنامه‌های بزرگی داریم.
+</p>
+
+<p>
+اگر شما هم ایده یا نظری دارید،
+می‌توانید به تیم ما بپیوندید.
+برای پیوستن به تیم ما در اینستاگرام پیام بگذارید.
+</p>
+
+<a class="instagram-link" href="https://instagram.com/benjamin_safi._" target="_blank">
+Instagram : @benjamin_safi._
+</a>
+
+<hr>
+
+<h1>پښتو</h1>
+
+<p>
+زما نوم بنیامین دی. زه ۲۶ کلن یم او د افغانستان د بغلان ولایت څخه یم.
+</p>
+
+<p>
+اوس مهال د <span class="highlight">Wirtschaftsinformatik</span> په رشته کې زده کړه کوم.
+زه او زما ملګري چې په مختلفو رشته‌وو کې زده کړه کوو،
+د افغانستان د راتلونکې لپاره د زیربنا، تعلیم او کار په برخه کې
+لوی پلانونه او نظریات لرو.
+</p>
+
+<p>
+که تاسو هم کومه نظریه لرئ،
+تاسو کولی شئ زموږ له ټیم سره یو ځای شئ.
+د یو ځای کېدو لپاره زما په انسټاګرام پیغام پرېږدئ.
+</p>
+
+<a class="instagram-link" href="https://instagram.com/benjamin_safi._" target="_blank">
+Instagram : @benjamin_safi._
+</a>
+
+</div>
+
+<script>
+
+const canvas = document.getElementById("matrix");
+const ctx = canvas.getContext("2d");
+
+function resizeCanvas(){
+canvas.height = window.innerHeight;
+canvas.width = window.innerWidth;
+}
+
+resizeCanvas();
+
+const letters="ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+const fontSize=30;
+
+let columns=Math.floor(canvas.width/fontSize);
+let drops=[];
+
+function resetDrops(){
+columns=Math.floor(canvas.width/fontSize);
+drops=[];
+for(let x=0;x<columns;x++) drops[x]=1;
+}
+
+resetDrops();
+
+function draw(){
+
+ctx.fillStyle="rgba(0,0,0,0.05)";
+ctx.fillRect(0,0,canvas.width,canvas.height);
+
+ctx.fillStyle="#00ff41";
+ctx.font=fontSize+"px monospace";
+
+for(let i=0;i<drops.length;i++){
+
+const text=letters[Math.floor(Math.random()*letters.length)];
+
+ctx.fillText(text,i*fontSize,drops[i]*fontSize);
+
+if(drops[i]*fontSize>canvas.height && Math.random()>0.975)
+drops[i]=0;
+
+drops[i]++;
+
+}
+
+}
+
+setInterval(draw,40);
+
+window.addEventListener("resize",()=>{
+resizeCanvas();
+resetDrops();
+});
+
+</script>
+
+</body>
+</html>
