@@ -1,1 +1,158 @@
+<!DOCTYPE html>
+<html lang="fa">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Benjamin Safi</title>
+
+<style>
+
+body{
+margin:0;
+direction:rtl;
+font-family:tahoma;
+color:white;
+background:black;
+overflow:hidden;
+}
+
+canvas{
+position:fixed;
+top:0;
+left:0;
+width:100%;
+height:100%;
+z-index:0;
+}
+
+.container{
+position:relative;
+z-index:2;
+max-width:900px;
+margin:120px auto;
+text-align:center;
+background:rgba(0,0,0,0.25);
+padding:50px;
+border-radius:20px;
+}
+
+h1{
+font-size:60px;
+margin-bottom:30px;
+}
+
+p{
+font-size:24px;
+line-height:2;
+margin-top:18px;
+}
+
+.highlight{
+color:#00ff41;
+font-weight:bold;
+}
+
+</style>
+</head>
+
+<body>
+
+<canvas id="matrix"></canvas>
+
+<div class="container">
+
+<h1>سلام، اسم من بنیامین است</h1>
+
+<p>
+۲۶ سال سن دارم و از ولایت بغلان افغانستان هستم.
+</p>
+
+<p>
+فعلاً در رشته <span class="highlight">Wirtschaftsinformatik</span> تحصیل می‌کنم.
+من و دوستانم که در رشته‌های مختلف تحصیل می‌کنیم،
+برای آینده افغانستان در زمینه‌های زیرساخت، تحصیل و کار
+ایده‌ها و برنامه‌های بزرگی داریم.
+</p>
+
+<p>
+اگر شما هم ایده یا نظری دارید،
+می‌توانید به تیم ما بپیوندید.
+برای پیوستن به تیم ما در اینستاگرام پیام بگذارید.
+</p>
+
+<p class="highlight">
+Instagram : Benjamin Safi
+</p>
+
+<hr style="margin:40px 0;border-color:#00ff41">
+
+<h1>پښتو</h1>
+
+<p>
+زما نوم بنیامین دی. زه ۲۶ کلن یم او د افغانستان د بغلان ولایت څخه یم.
+</p>
+
+<p>
+اوس مهال د <span class="highlight">Wirtschaftsinformatik</span> په رشته کې زده کړه کوم.
+زه او زما ملګري چې په مختلفو رشته‌وو کې زده کړه کوو،
+د افغانستان د راتلونکې لپاره د زیربنا، تعلیم او کار په برخه کې
+لوی پلانونه او نظریات لرو.
+</p>
+
+<p>
+که تاسو هم کومه نظریه لرئ،
+تاسو کولی شئ زموږ له ټیم سره یو ځای شئ.
+د یو ځای کېدو لپاره زما په انسټاګرام پیغام پرېږدئ.
+</p>
+
+<p class="highlight">
+Instagram : Benjamin Safi
+</p>
+
+</div>
+
+<script>
+
+const canvas = document.getElementById("matrix");
+const ctx = canvas.getContext("2d");
+
+canvas.height = window.innerHeight;
+canvas.width = window.innerWidth;
+
+const letters="ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+const fontSize=30;
+const columns=canvas.width/fontSize;
+const drops=[];
+
+for(let x=0;x<columns;x++) drops[x]=1;
+
+function draw(){
+
+ctx.fillStyle="rgba(0,0,0,0.05)";
+ctx.fillRect(0,0,canvas.width,canvas.height);
+
+ctx.fillStyle="#00ff41";
+ctx.font=fontSize+"px monospace";
+
+for(let i=0;i<drops.length;i++){
+
+const text=letters[Math.floor(Math.random()*letters.length)];
+
+ctx.fillText(text,i*fontSize,drops[i]*fontSize);
+
+if(drops[i]*fontSize>canvas.height && Math.random()>0.975)
+drops[i]=0;
+
+drops[i]++;
+
+}
+
+}
+
+setInterval(draw,40);
+
+</script>
+
+</body>
+</html>
 
