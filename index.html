@@ -31,14 +31,16 @@ position:relative;
 z-index:2;
 max-width:900px;
 margin:60px auto;
-padding:20px;
-background:rgba(0,0,0,0.4);
+padding:30px;
+background:rgba(0,0,0,0.35);
 border-radius:20px;
+box-shadow:0 0 25px #00ff41;
 }
 
 h1{
 color:#00ff41;
 font-size:40px;
+text-shadow:0 0 15px #00ff41;
 }
 
 h2{
@@ -54,17 +56,19 @@ line-height:1.9;
 .button{
 display:inline-block;
 margin-top:20px;
-padding:12px 20px;
+padding:12px 25px;
 border:2px solid #00ff41;
 border-radius:10px;
 color:#00ff41;
 text-decoration:none;
 font-weight:bold;
+transition:0.3s;
 }
 
 .button:hover{
 background:#00ff41;
 color:black;
+box-shadow:0 0 15px #00ff41;
 }
 
 .skills span{
@@ -73,6 +77,19 @@ border:1px solid #00ff41;
 padding:8px 12px;
 margin:6px;
 border-radius:8px;
+transition:0.3s;
+}
+
+.skills span:hover{
+background:#00ff41;
+color:black;
+}
+
+.typing{
+border-left:3px solid #00ff41;
+display:inline-block;
+padding-left:10px;
+min-height:45px;
 }
 
 </style>
@@ -84,15 +101,38 @@ border-radius:8px;
 
 <div class="container">
 
-<h1>سلام، اسم من بنیامین است</h1>
+<h1 class="typing" id="typing"></h1>
 
 <p>
-۲۶ سال سن دارم و از ولایت بغلان افغانستان هستم.
+سلام، نام من بنیامین است و از ولایت بغلان افغانستان هستم.
 </p>
 
 <p>
-فعلاً در رشته <b>Wirtschaftsinformatik</b> تحصیل می‌کنم
-و علاقه زیادی به <b>Cybersecurity</b> دارم.
+فعلاً در رشته <b>Wirtschaftsinformatik</b> تحصیل می‌کنم و علاقه زیادی به امنیت اطلاعات و امنیت سایبری دارم.
+</p>
+
+<p>
+به نظر من ما نباید منتظر بمانیم که دولت کشور ما را آباد کند.
+ما باید خودمان حرکت کنیم و به دنیا نشان بدهیم که افغان‌ها فقط تروریست و بی‌سواد نیستند.
+</p>
+
+<p>
+یکی از چیزهایی که مرا بسیار رنج می‌دهد این است که در بسیاری از کشورهای دنیا برای افغان‌ها احترام کافی وجود ندارد
+و پاسپورت افغانستان اعتبار کمی دارد.
+</p>
+
+<p>
+من و چند تن از دوستانم که در رشته‌های اقتصادی و امنیتی تحصیل می‌کنیم،
+برای آینده وطن‌مان برنامه‌ها و پلان‌های بزرگی داریم؛
+در بخش زیرساخت‌ها، امنیت، مکاتب، کار و مهم‌تر از همه تکنولوژی.
+</p>
+
+<p>
+هدف ما این است که هموطنان ما یک زندگی آسان، امن و با عزت داشته باشند.
+</p>
+
+<p>
+خوشحال می‌شویم اگر شما هم به تیم ما بپیوندید و نظریه‌ها و ایده‌های خود را با ما شریک بسازید.
 </p>
 
 <a class="button" href="https://instagram.com/benjamin_safi._" target="_blank">
@@ -132,12 +172,40 @@ Instagram : @benjamin_safi._
 <h2>پښتو</h2>
 
 <p>
-زما نوم بنیامین دی. زه ۲۶ کلن یم او د افغانستان د بغلان ولایت څخه یم.
+سلام، زما نوم بنیامین دی او زه د افغانستان د بغلان ولایت څخه یم.
 </p>
 
 <p>
-اوس مهال د Wirtschaftsinformatik په رشته کې زده کړه کوم
-او د سایبري امنیت سره علاقه لرم.
+اوس مهال د <b>Wirtschaftsinformatik</b> په رشته کې زده کړه کوم
+او د معلوماتي امنیت او سایبري امنیت سره ډېره علاقه لرم.
+</p>
+
+<p>
+زما په نظر موږ باید دا انتظار ونه کړو چې دولت به زموږ هېواد جوړ کړي.
+موږ باید خپله هڅه وکړو او نړۍ ته وښیو چې افغانان یوازې ترهګر او بې سواده نه دي.
+</p>
+
+<p>
+یو له هغو شیانو څخه چې ما ډېر ځوروي دا دی چې
+په نړۍ کې د افغانانو پاسپورټ ډېر اعتبار نه لري
+او ډېر وخت زموږ خلکو ته کافي درناوی نه کېږي.
+</p>
+
+<p>
+زه او زما څو ملګري چې په اقتصادي او امنیتي رشته‌وو کې زده کړه کوو،
+د خپل هېواد د راتلونکې لپاره لوی پلانونه لرو،
+د زیربناوو، امنیت، ښوونځیو، کار او تر ټولو مهم د ټکنالوژۍ په برخه کې.
+</p>
+
+<p>
+زموږ هدف دا دی چې زموږ د وطن خلک
+یو اسانه، خوندي او باعزته ژوند ولري.
+</p>
+
+<p>
+که تاسو هم کومه نظریه یا مفکوره لرئ،
+موږ به خوشحاله شو که زموږ له ټیم سره یو ځای شئ
+او خپلې نظریې له موږ سره شریکې کړئ.
 </p>
 
 </div>
@@ -150,18 +218,17 @@ const ctx = canvas.getContext("2d");
 canvas.height = window.innerHeight;
 canvas.width = window.innerWidth;
 
-const letters="ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+const letters="アァカサタナハマヤャラワ0123456789";
 const fontSize=18;
 const columns=canvas.width/fontSize;
 
 const drops=[];
 
-for(let x=0;x<columns;x++)
-drops[x]=1;
+for(let x=0;x<columns;x++) drops[x]=1;
 
 function draw(){
 
-ctx.fillStyle="rgba(0,0,0,0.05)";
+ctx.fillStyle="rgba(0,0,0,0.04)";
 ctx.fillRect(0,0,canvas.width,canvas.height);
 
 ctx.fillStyle="#00ff41";
@@ -182,7 +249,26 @@ drops[i]++;
 
 }
 
-setInterval(draw,40);
+setInterval(draw,35);
+
+const text="سلام، نام من بنیامین است";
+let i=0;
+
+function type(){
+
+if(i<text.length){
+
+document.getElementById("typing").innerHTML+=text.charAt(i);
+
+i++;
+
+setTimeout(type,70);
+
+}
+
+}
+
+type();
 
 </script>
 
