@@ -1,220 +1,139 @@
-<!DOCTYPE html>
-<html lang="fa">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Benjamin Safi</title>
+<div class="bar"><div class="bar-fill" style="width:75%"></div></div>
+      </div>
 
-<style>
+      <div class="skill-box">
+        <div class="skill-title">Linux</div>
+        <div class="bar"><div class="bar-fill" style="width:70%"></div></div>
+      </div>
 
-html{
-scroll-behavior:smooth;
-}
+      <div class="skill-box">
+        <div class="skill-title">Networking</div>
+        <div class="bar"><div class="bar-fill" style="width:72%"></div></div>
+      </div>
 
-body{
-margin:0;
-direction:rtl;
-font-family:monospace;
-color:white;
-background:black;
-overflow-x:hidden;
-}
+      <div class="skill-box">
+        <div class="skill-title">Python</div>
+        <div class="bar"><div class="bar-fill" style="width:55%"></div></div>
+      </div>
 
-canvas{
-position:fixed;
-top:0;
-left:0;
-width:100%;
-height:100%;
-z-index:0;
-}
+      <div class="skill-box">
+        <div class="skill-title">Web Development</div>
+        <div class="bar"><div class="bar-fill" style="width:60%"></div></div>
+      </div>
 
-.container{
-position:relative;
-z-index:2;
-max-width:900px;
-margin:60px auto;
-text-align:center;
-background:rgba(0,0,0,0.3);
-padding:40px;
-border-radius:20px;
-box-shadow:0 0 20px #00ff41;
-}
+      <div class="skill-box">
+        <div class="skill-title">AWS / Cloud</div>
+        <div class="bar"><div class="bar-fill" style="width:58%"></div></div>
+      </div>
+    </div>
+  </div>
 
-h1{
-color:#00ff41;
-font-size:40px;
-}
+  <div class="section" id="projects">
+    <h2>پروژه‌ها</h2>
+    <div class="projects">
+      <div class="project-card">
+        <h3>اولین وب‌سایت شخصی</h3>
+        <p>اولین سایتی که ساختم و روی GitHub Pages آنلاین کردم.</p>
+      </div>
 
-h2{
-color:#00ff41;
-margin-top:40px;
-}
+      <div class="project-card">
+        <h3>پروژه‌های آینده</h3>
+        <p>پروژه‌های مرتبط با Cybersecurity، آموزش و تکنولوژی برای آینده افغانستان.</p>
+      </div>
 
-p{
-font-size:20px;
-line-height:1.9;
-}
+      <div class="project-card">
+        <h3>توسعه مهارت‌ها</h3>
+        <p>یادگیری مداوم در Linux، شبکه، امنیت سایبری و توسعه وب.</p>
+      </div>
+    </div>
+  </div>
 
-.highlight{
-color:#00ff41;
-font-weight:bold;
-}
+  <div class="section" id="contact">
+    <h2>تماس</h2>
+    <p>
+      اگر شما هم ایده، نظریه یا برنامه‌ای برای آینده دارید، خوشحال می‌شوم با من در ارتباط شوید.
+    </p>
+    <a class="button" href="https://instagram.com/benjamin_safi._" target="_blank">پیام در اینستاگرام</a>
+  </div>
 
-.skills span{
-display:inline-block;
-border:1px solid #00ff41;
-padding:8px 14px;
-margin:6px;
-border-radius:8px;
-}
+  <div class="section">
+    <h2>پښتو</h2>
+    <p>
+      زما نوم بنیامین دی. زه ۲۶ کلن یم او د افغانستان د بغلان ولایت څخه یم.
+    </p>
+    <p>
+      اوس مهال د <span class="highlight">Wirtschaftsinformatik</span> په رشته کې زده کړه کوم
+      او د سایبري امنیت سره ډېره علاقه لرم.
+    </p>
+    <p>
+      که تاسو هم کومه نظریه لرئ، تاسو کولی شئ زموږ له ټیم سره یو ځای شئ.
+      د یو ځای کېدو لپاره زما په انسټاګرام پیغام پرېږدئ.
+    </p>
+  </div>
 
-.button{
-display:inline-block;
-margin-top:20px;
-padding:12px 25px;
-border:2px solid #00ff41;
-border-radius:10px;
-color:#00ff41;
-text-decoration:none;
-transition:0.3s;
-}
-
-.button:hover{
-background:#00ff41;
-color:black;
-}
-
-hr{
-margin:40px 0;
-border:1px solid #00ff41;
-}
-
-</style>
-</head>
-
-<body>
-
-<canvas id="matrix"></canvas>
-
-<div class="container">
-
-<h1 id="typing"></h1>
-
-<p>
-۲۶ سال سن دارم و از ولایت بغلان افغانستان هستم.
-</p>
-
-<p>
-فعلاً در رشته <span class="highlight">Wirtschaftsinformatik</span>
-تحصیل می‌کنم و علاقه زیادی به
-<span class="highlight">Cybersecurity</span> دارم.
-</p>
-
-<a class="button" href="https://instagram.com/benjamin_safi._" target="_blank">
-Instagram : @benjamin_safi._
-</a>
-
-<hr>
-
-<h2>Skills</h2>
-
-<div class="skills">
-<span>Linux</span>
-<span>Networking</span>
-<span>Cybersecurity</span>
-<span>Python</span>
-<span>Web Development</span>
 </div>
 
-<hr>
-
-<h2>Projects</h2>
-
-<p>اولین وبسایت شخصی من</p>
-<p>پروژه‌های آینده در Cybersecurity</p>
-
-<hr>
-
-<h2>Contact</h2>
-
-<a class="button" href="https://instagram.com/benjamin_safi._" target="_blank">
-Message me on Instagram
-</a>
-
-<hr>
-
-<h2>پښتو</h2>
-
-<p>
-زما نوم بنیامین دی. زه ۲۶ کلن یم او د افغانستان د بغلان ولایت څخه یم.
-</p>
-
-<p>
-اوس مهال د Wirtschaftsinformatik په رشته کې زده کړه کوم
-او د سایبري امنیت سره ډېره علاقه لرم.
-</p>
-
+<div class="footer">
+  Benjamin Safi | Cybersecurity Journey
 </div>
 
 <script>
-
-/* Matrix background */
-
 const canvas = document.getElementById("matrix");
 const ctx = canvas.getContext("2d");
 
-canvas.height = window.innerHeight;
-canvas.width = window.innerWidth;
+function resizeCanvas(){
+  canvas.height = window.innerHeight;
+  canvas.width = window.innerWidth;
+}
+resizeCanvas();
 
-const letters="ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
-const fontSize=20;
-const columns=canvas.width/fontSize;
+const letters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+const fontSize = 20;
+let columns = Math.floor(canvas.width / fontSize);
+let drops = [];
 
-const drops=[];
-
-for(let x=0;x<columns;x++) drops[x]=1;
+function resetDrops(){
+  columns = Math.floor(canvas.width / fontSize);
+  drops = [];
+  for(let x = 0; x < columns; x++) drops[x] = 1;
+}
+resetDrops();
 
 function draw(){
+  ctx.fillStyle = "rgba(0,0,0,0.06)";
+  ctx.fillRect(0,0,canvas.width,canvas.height);
 
-ctx.fillStyle="rgba(0,0,0,0.05)";
-ctx.fillRect(0,0,canvas.width,canvas.height);
+  ctx.fillStyle = "#00ff41";
+  ctx.font = fontSize + "px monospace";
 
-ctx.fillStyle="#00ff41";
-ctx.font=fontSize+"px monospace";
+  for(let i = 0; i < drops.length; i++){
+    const text = letters[Math.floor(Math.random() * letters.length)];
+    ctx.fillText(text, i * fontSize, drops[i] * fontSize);
 
-for(let i=0;i<drops.length;i++){
+    if(drops[i] * fontSize > canvas.height && Math.random() > 0.975){
+      drops[i] = 0;
+    }
 
-const text=letters[Math.floor(Math.random()*letters.length)];
-
-ctx.fillText(text,i*fontSize,drops[i]*fontSize);
-
-if(drops[i]*fontSize>canvas.height && Math.random()>0.975)
-drops[i]=0;
-
-drops[i]++;
-
+    drops[i]++;
+  }
 }
+setInterval(draw, 40);
 
+window.addEventListener("resize", () => {
+  resizeCanvas();
+  resetDrops();
+});
+
+const text = "سلام، اسم من بنیامین است";
+let i = 0;
+function typeText(){
+  if(i < text.length){
+    document.getElementById("typing").innerHTML += text.charAt(i);
+    i++;
+    setTimeout(typeText, 85);
+  }
 }
-
-setInterval(draw,40);
-
-/* Hacker typing effect */
-
-const text="سلام، اسم من بنیامین است";
-let i=0;
-
-function type(){
-if(i<text.length){
-document.getElementById("typing").innerHTML+=text.charAt(i);
-i++;
-setTimeout(type,80);
-}
-}
-
-type();
-
+typeText();
 </script>
 
 </body>
