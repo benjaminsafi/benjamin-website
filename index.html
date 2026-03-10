@@ -1,62 +1,292 @@
-const ctx = canvas.getContext("2d");
 
-function resizeCanvas(){
-  canvas.height = window.innerHeight;
-  canvas.width = window.innerWidth;
+
+<!DOCTYPE html>
+<html lang="fa">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Benjamin Safi | Cybersecurity</title>
+
+<style>
+html{
+  scroll-behavior:smooth;
 }
-resizeCanvas();
 
-const letters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
-const fontSize = 20;
-let columns = Math.floor(canvas.width / fontSize);
-let drops = [];
-
-function resetDrops(){
-  columns = Math.floor(canvas.width / fontSize);
-  drops = [];
-  for(let x = 0; x < columns; x++) drops[x] = 1;
+body{
+  margin:0;
+  direction:rtl;
+  font-family:tahoma, sans-serif;
+  background:black;
+  color:white;
+  overflow-x:hidden;
 }
-resetDrops();
 
-function draw(){
-  ctx.fillStyle = "rgba(0,0,0,0.06)";
-  ctx.fillRect(0,0,canvas.width,canvas.height);
+canvas{
+  position:fixed;
+  top:0;
+  left:0;
+  width:100%;
+  height:100%;
+  z-index:0;
+}
 
-  ctx.fillStyle = "#00ff41";
-  ctx.font = fontSize + "px monospace";
+.navbar{
+  position:sticky;
+  top:0;
+  z-index:5;
+  background:rgba(0,0,0,0.75);
+  backdrop-filter:blur(10px);
+  padding:14px 10px;
+  text-align:center;
+  border-bottom:1px solid #00ff41;
+}
 
-  for(let i = 0; i < drops.length; i++){
-    const text = letters[Math.floor(Math.random() * letters.length)];
-    ctx.fillText(text, i * fontSize, drops[i] * fontSize);
+.navbar a{
+  color:#00ff41;
+  text-decoration:none;
+  margin:8px 10px;
+  font-weight:bold;
+  display:inline-block;
+  transition:0.3s;
+}
 
-    if(drops[i] * fontSize > canvas.height && Math.random() > 0.975){
-      drops[i] = 0;
-    }
+.navbar a:hover{
+  color:white;
+}
 
-    drops[i]++;
+.container{
+  position:relative;
+  z-index:2;
+  max-width:1100px;
+  margin:40px auto;
+  padding:20px;
+}
+
+.section{
+  background:rgba(0,0,0,0.38);
+  border:1px solid rgba(0,255,65,0.35);
+  border-radius:22px;
+  padding:30px 22px;
+  margin-bottom:24px;
+  box-shadow:0 0 22px rgba(0,255,65,0.12);
+}
+
+.hero{
+  text-align:center;
+  padding:50px 20px;
+}
+
+.profile-wrap{
+  margin-bottom:20px;
+}
+
+.profile-img{
+  width:140px;
+  height:140px;
+  border-radius:50%;
+  object-fit:cover;
+  border:3px solid #00ff41;
+  box-shadow:0 0 25px rgba(0,255,65,0.4);
+}
+
+.logo-circle{
+  width:120px;
+  height:120px;
+  margin:0 auto 18px;
+  border-radius:50%;
+  border:3px solid #00ff41;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size:34px;
+  font-weight:bold;
+  color:#00ff41;
+  box-shadow:0 0 25px rgba(0,255,65,0.35);
+}
+
+h1{
+  color:#00ff41;
+  font-size:48px;
+  margin:10px 0;
+}
+
+h2{
+  color:#00ff41;
+  margin-bottom:20px;
+  font-size:30px;
+}
+
+p{
+  font-size:21px;
+  line-height:2;
+}
+
+.highlight{
+  color:#00ff41;
+  font-weight:bold;
+}
+
+.subtitle{
+  font-size:22px;
+  opacity:0.95;
+}
+
+.button{
+  display:inline-block;
+  margin-top:20px;
+  padding:14px 24px;
+  border:2px solid #00ff41;
+  border-radius:12px;
+  color:#00ff41;
+  text-decoration:none;
+  font-weight:bold;
+  transition:0.3s;
+}
+
+.button:hover{
+  background:#00ff41;
+  color:black;
+}
+
+.skills-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+  gap:18px;
+}
+
+.skill-box{
+  background:rgba(0,0,0,0.35);
+  border:1px solid #00ff41;
+  border-radius:14px;
+  padding:15px;
+}
+
+.skill-title{
+  margin-bottom:10px;
+  font-weight:bold;
+  color:#00ff41;
+}
+
+.bar{
+  width:100%;
+  height:12px;
+  background:#111;
+  border-radius:999px;
+  overflow:hidden;
+}
+
+.bar-fill{
+  height:100%;
+  background:#00ff41;
+}
+
+.projects{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+  gap:18px;
+}
+
+.project-card{
+  border:1px solid #00ff41;
+  border-radius:16px;
+  padding:18px;
+  background:rgba(0,0,0,0.30);
+  transition:transform 0.3s, box-shadow 0.3s;
+}
+
+.project-card:hover{
+  transform:translateY(-6px);
+  box-shadow:0 0 20px rgba(0,255,65,0.22);
+}
+
+.project-card h3{
+  color:#00ff41;
+  margin-top:0;
+}
+
+.footer{
+  text-align:center;
+  padding:20px;
+  color:#00ff41;
+  opacity:0.9;
+}
+
+.typing{
+  border-left:3px solid #00ff41;
+  display:inline-block;
+  padding-left:8px;
+  min-height:60px;
+}
+
+.glitch{
+  position:relative;
+  display:inline-block;
+}
+
+.glitch::before,
+.glitch::after{
+  content:attr(data-text);
+  position:absolute;
+  right:0;
+  top:0;
+  width:100%;
+  overflow:hidden;
+}
+
+.glitch::before{
+  color:#00ff41;
+  clip-path:inset(0 0 55% 0);
+  transform:translate(2px, -2px);
+  opacity:0.7;
+}
+
+.glitch::after{
+  color:white;
+  clip-path:inset(45% 0 0 0);
+  transform:translate(-2px, 2px);
+  opacity:0.5;
+}
+
+.small-note{
+  font-size:15px;
+  opacity:0.8;
+  margin-top:10px;
+}
+
+@media (max-width:768px){
+  h1{
+    font-size:34px;
+  }
+
+  h2{
+    font-size:24px;
+  }
+
+  p, .subtitle{
+    font-size:18px;
+  }
+
+  .container{
+    padding:14px;
+  }
+
+  .section{
+    padding:22px 14px;
+  }
+
+  .profile-img{
+    width:110px;
+    height:110px;
+  }
+
+  .logo-circle{
+    width:95px;
+    height:95px;
+    font-size:26px;
   }
 }
-setInterval(draw, 40);
+</style>
+</head>
+<body>
 
-window.addEventListener("resize", () => {
-  resizeCanvas();
-  resetDrops();
-});
-
-const text = "سلام، اسم من بنیامین است";
-let i = 0;
-const typingEl = document.getElementById("typing");
-typingEl.setAttribute("data-text", text);
-
-function typeText(){
-  if(i < text.length){
-    typingEl.innerHTML += text.charAt(i);
-    i++;
-    setTimeout(typeText, 85);
-  }
-}
-typeText();
-</script>
-
-</body>
-</html>
+<canvas id="matrix"></canvas>
