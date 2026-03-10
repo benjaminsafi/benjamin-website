@@ -3,7 +3,17 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Benjamin Safi | Cybersecurity</title>
+<title>Benjamin Safi | Cybersecurity | Afghanistan</title>
+
+<meta name="description" content="Benjamin Safi - علاقه‌مند به امنیت اطلاعات، امنیت سایبری، Wirtschaftsinformatik، تکنولوژی و آینده افغانستان">
+<meta name="keywords" content="Benjamin Safi, Cybersecurity, Afghanistan, Baghlan, Wirtschaftsinformatik, Information Security, Afghan student">
+<meta name="author" content="Benjamin Safi">
+
+<meta property="og:title" content="Benjamin Safi | Cybersecurity">
+<meta property="og:description" content="علاقه‌مند به امنیت اطلاعات، امنیت سایبری، تکنولوژی و آینده افغانستان">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://benjaminsafi.github.io/benjamin-website/">
+<meta property="og:site_name" content="Benjamin Safi">
 
 <style>
 *{box-sizing:border-box}
@@ -17,8 +27,6 @@ color:#fff;
 text-align:center;
 overflow-x:hidden;
 }
-
-/* layers */
 
 #matrix{
 position:fixed;
@@ -48,8 +56,6 @@ z-index:2;
 pointer-events:none;
 }
 
-/* loading */
-
 #loading{
 position:fixed;
 inset:0;
@@ -70,8 +76,6 @@ z-index:9999;
 50%{opacity:0}
 100%{opacity:1}
 }
-
-/* content */
 
 .container{
 position:relative;
@@ -136,6 +140,31 @@ transition:all 1s;
 opacity:1;
 transform:translateY(0);
 }
+
+@media (max-width:768px){
+.container{
+margin:25px 14px;
+padding:20px;
+}
+
+h1{
+font-size:28px;
+}
+
+h2{
+font-size:24px;
+}
+
+p{
+font-size:17px;
+line-height:1.8;
+}
+
+.button{
+font-size:16px;
+padding:10px 18px;
+}
+}
 </style>
 </head>
 
@@ -162,7 +191,7 @@ transform:translateY(0);
 </p>
 
 <p>
-فعلاً در رشته <b>Wirtschaftsinformatik</b> تحصیل می‌کنم هدف و علاقه زیادی به  اطلاعات و امنیت سایبری دارم.
+فعلاً در رشته <b>Wirtschaftsinformatik</b> تحصیل می‌کنم و علاقه زیادی به امنیت اطلاعات و امنیت سایبری دارم.
 </p>
 
 <p>
@@ -199,10 +228,18 @@ Instagram : @benjamin_safi._
 
 <div class="skills reveal">
 <span>Cybersecurity</span>
+<span>Cyber Expert</span>
 <span>Linux</span>
 <span>Networking</span>
 <span>Python</span>
 <span>Web Development</span>
+<span>Cloud Engineering</span>
+<span>Cloud Computing</span>
+<span>Database Management</span>
+<span>Datenbank Management</span>
+<span>Projekt Management</span>
+<span>System Administration</span>
+<span>Information Security</span>
 </div>
 
 <h2 class="reveal">تماس</h2>
@@ -241,30 +278,32 @@ Instagram : @benjamin_safi._
 
 <script>
 
-/* loading */
-
 setTimeout(()=>{
 document.getElementById("loading").style.display="none";
 },2500);
 
-/* matrix */
-
 const canvas=document.getElementById("matrix");
 const ctx=canvas.getContext("2d");
 
+function resizeMatrix(){
 canvas.height=window.innerHeight;
 canvas.width=window.innerWidth;
+}
+resizeMatrix();
 
 const letters="01";
 const fontSize=18;
-const columns=canvas.width/fontSize;
+let columns=Math.floor(canvas.width/fontSize);
+let drops=[];
 
-const drops=[];
-
+function resetDrops(){
+columns=Math.floor(canvas.width/fontSize);
+drops=[];
 for(let x=0;x<columns;x++) drops[x]=1;
+}
+resetDrops();
 
 function draw(){
-
 ctx.fillStyle="rgba(0,0,0,0.05)";
 ctx.fillRect(0,0,canvas.width,canvas.height);
 
@@ -272,28 +311,22 @@ ctx.fillStyle="#00ff41";
 ctx.font=fontSize+"px monospace";
 
 for(let i=0;i<drops.length;i++){
-
 const text=letters[Math.floor(Math.random()*letters.length)];
-
 ctx.fillText(text,i*fontSize,drops[i]*fontSize);
 
 if(drops[i]*fontSize>canvas.height && Math.random()>0.975)
 drops[i]=0;
 
 drops[i]++;
-
 }
-
 }
 
 setInterval(draw,35);
 
-/* globe */
-
 const scene=new THREE.Scene();
 const camera=new THREE.PerspectiveCamera(75,window.innerWidth/window.innerHeight,0.1,1000);
 
-const renderer=new THREE.WebGLRenderer({alpha:true});
+const renderer=new THREE.WebGLRenderer({alpha:true, antialias:true});
 renderer.setSize(window.innerWidth,window.innerHeight);
 
 document.getElementById("globe").appendChild(renderer.domElement);
@@ -318,28 +351,29 @@ renderer.render(scene,camera);
 
 animate();
 
-/* reveal */
-
 function reveal(){
-
 const reveals=document.querySelectorAll(".reveal");
 
 for(let i=0;i<reveals.length;i++){
-
 const windowHeight=window.innerHeight;
 const elementTop=reveals[i].getBoundingClientRect().top;
 
 if(elementTop < windowHeight-100){
 reveals[i].classList.add("active");
 }
-
 }
-
 }
 
 window.addEventListener("scroll",reveal);
 reveal();
 
+window.addEventListener("resize",()=>{
+resizeMatrix();
+resetDrops();
+camera.aspect=window.innerWidth/window.innerHeight;
+camera.updateProjectionMatrix();
+renderer.setSize(window.innerWidth,window.innerHeight);
+});
 </script>
 
 </body>
