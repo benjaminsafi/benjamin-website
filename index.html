@@ -45,14 +45,13 @@ width:100%;
 height:100%;
 z-index:1;
 pointer-events:none;
-opacity:0.40;
+opacity:0.50;
 }
 
 .overlay{
 position:fixed;
 inset:0;
-background:
-radial-gradient(circle at center, rgba(0,255,65,0.10), rgba(0,0,0,0.35));
+background:radial-gradient(circle at center, rgba(0,255,65,0.12), rgba(0,0,0,0.40));
 z-index:2;
 pointer-events:none;
 }
@@ -84,10 +83,10 @@ z-index:3;
 max-width:900px;
 margin:60px auto;
 padding:30px;
-background:rgba(0,0,0,0.55);
+background:rgba(0,0,0,0.58);
 border-radius:20px;
 box-shadow:0 0 25px #00ff41;
-backdrop-filter:blur(3px);
+backdrop-filter:blur(4px);
 }
 
 h1{
@@ -325,10 +324,9 @@ drops[i]=0;
 drops[i]++;
 }
 }
-
 setInterval(drawMatrix,35);
 
-/* Globe */
+/* Globe scene */
 const scene=new THREE.Scene();
 
 const camera=new THREE.PerspectiveCamera(
@@ -348,25 +346,20 @@ document.getElementById("globe").appendChild(renderer.domElement);
 
 const textureLoader=new THREE.TextureLoader();
 
-const earthTexture=textureLoader.load(
-"https://threejs.org/examples/textures/land_ocean_ice_cloud_2048.jpg"
-);
+/* Earth */
+const earthTexture=textureLoader.load("https://threejs.org/examples/textures/land_ocean_ice_cloud_2048.jpg");
+const cloudTexture=textureLoader.load("https://threejs.org/examples/textures/planets/earth_clouds_1024.png");
 
-const cloudTexture=textureLoader.load(
-"https://threejs.org/examples/textures/planets/earth_clouds_1024.png"
-);
-
-/* Main Earth */
 const earthGeometry=new THREE.SphereGeometry(5,64,64);
 const earthMaterial=new THREE.MeshPhongMaterial({
 map:earthTexture,
-shininess:8
+shininess:10
 });
 const earth=new THREE.Mesh(earthGeometry,earthMaterial);
 scene.add(earth);
 
 /* Clouds */
-const cloudGeometry=new THREE.SphereGeometry(5.06,64,64);
+const cloudGeometry=new THREE.SphereGeometry(5.07,64,64);
 const cloudMaterial=new THREE.MeshPhongMaterial({
 map:cloudTexture,
 transparent:true,
@@ -398,14 +391,123 @@ const greenLight=new THREE.PointLight(0x00ff66,0.8,50);
 greenLight.position.set(-10,-5,8);
 scene.add(greenLight);
 
+/* Cyber points around earth */
+const pointCount=160;
+const pointPositions=[];
+for(let i=0;i<pointCount;i++){
+const phi=Math.acos((Math.random()*2)-1);
+const theta=Math.random()*Math.PI*2;
+const radius=5.6 + Math.random()*0.35;
+
+const x=radius*Math.sin(phi)*Math.cos(theta);
+const y=radius*Math.cos(phi);
+const z=radius*Math.sin(phi)*Math.sin(theta);
+
+pointPositions.push(x,y,z);
+}
+
+const pointGeometry=new THREE.BufferGeometry();
+pointGeometry.setAttribute(
+"position",
+new THREE.Float32BufferAttribute(pointPositions,3)
+);
+
+const pointMaterial=new THREE.PointsMaterial({
+color:0x00ff88,
+size:0.05,
+transparent:true,
+opacity:0.9
+});
+
+const cyberPoints=new THREE.Points(pointGeometry,pointMaterial);
+scene.add(cyberPoints);
+
+/* Cyber attack lines */
+const attackLines=[];
+function createAttackLine(){
+const startRadius=5.15;
+const endRadius=6.6;
+
+const phi1=Math.acos((Math.random()*2)-1);
+const theta1=Math.random()*Math.PI*2;
+const phi2=Math.acos((Math.random()*2)-1);
+const theta2=Math.random()*Math.PI*2;
+
+const start=new THREE.Vector3(
+startRadius*Math.sin(phi1)*Math.cos(theta1),
+startRadius*Math.cos(phi1),
+startRadius*Math.sin(phi1)*Math.sin(theta1)
+);
+
+const end=new THREE.Vector3(
+endRadius*Math.sin(phi2)*Math.cos(theta2),
+endRadius*Math.cos(phi2),
+endRadius*Math.sin(phi2)*Math.sin(theta2)
+);
+
+const mid=start.clone().add(end).multiplyScalar(0.5);
+mid.normalize().multiplyScalar(7.2);
+
+const curve=new THREE.QuadraticBezierCurve3(start,mid,end);
+const points=curve.getPoints(40);
+
+const geometry=new THREE.BufferGeometry().setFromPoints(points);
+const material=new THREE.LineBasicMaterial({
+color:0x00ff66,
+transparent:true,
+opacity:0.0
+});
+
+const line=new THREE.Line(geometry,material);
+scene.add(line);
+
+attackLines.push({
+line,
+material,
+life:Math.random()*200,
+speed:0.012 + Math.random()*0.02
+});
+}
+
+for(let i=0;i<18;i++){
+createAttackLine();
+}
+
 camera.position.z=10;
+
+function animateAttackLines(){
+for(let i=0;i<attackLines.length;i++){
+const item=attackLines[i];
+item.life+=item.speed;
+
+let opacity=0;
+if(item.life<1){
+opacity=item.life;
+}else if(item.life<2){
+opacity=1;
+}else if(item.life<3){
+opacity=3-item.life;
+}else{
+item.life=0;
+}
+
+item.material.opacity=opacity*0.7;
+}
+}
 
 function animate(){
 requestAnimationFrame(animate);
+
 earth.rotation.y+=0.0022;
-earth.rotation.x+=0.00025;
-clouds.rotation.y+=0.0028;
+earth.rotation.x+=0.0002;
+
+clouds.rotation.y+=0.0029;
 glow.rotation.y+=0.0015;
+cyberPoints.rotation.y+=0.0018;
+cyberPoints.rotation.x+=0.0003;
+
+animateAttackLines();
+
 renderer.render(scene,camera);
 }
 animate();
