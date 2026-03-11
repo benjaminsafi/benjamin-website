@@ -21,7 +21,7 @@
 body{
 margin:0;
 direction:rtl;
-font-family:tahoma, sans-serif;
+font-family:tahoma,sans-serif;
 background:#000;
 color:#fff;
 text-align:center;
@@ -45,13 +45,14 @@ width:100%;
 height:100%;
 z-index:1;
 pointer-events:none;
-opacity:0.30;
+opacity:0.40;
 }
 
 .overlay{
 position:fixed;
 inset:0;
-background:radial-gradient(circle at center, rgba(0,255,65,0.08), rgba(0,0,0,0.35));
+background:
+radial-gradient(circle at center, rgba(0,255,65,0.10), rgba(0,0,0,0.35));
 z-index:2;
 pointer-events:none;
 }
@@ -86,6 +87,7 @@ padding:30px;
 background:rgba(0,0,0,0.55);
 border-radius:20px;
 box-shadow:0 0 25px #00ff41;
+backdrop-filter:blur(3px);
 }
 
 h1{
@@ -118,7 +120,7 @@ transition:0.3s;
 
 .button:hover{
 background:#00ff41;
-color:black;
+color:#000;
 box-shadow:0 0 15px #00ff41;
 }
 
@@ -326,8 +328,9 @@ drops[i]++;
 
 setInterval(drawMatrix,35);
 
-/* Real Earth */
+/* Globe */
 const scene=new THREE.Scene();
+
 const camera=new THREE.PerspectiveCamera(
 75,
 window.innerWidth/window.innerHeight,
@@ -335,30 +338,74 @@ window.innerWidth/window.innerHeight,
 1000
 );
 
-const renderer=new THREE.WebGLRenderer({alpha:true, antialias:true});
+const renderer=new THREE.WebGLRenderer({
+alpha:true,
+antialias:true
+});
 renderer.setSize(window.innerWidth,window.innerHeight);
+renderer.setPixelRatio(window.devicePixelRatio);
 document.getElementById("globe").appendChild(renderer.domElement);
 
-const geometry=new THREE.SphereGeometry(5,64,64);
 const textureLoader=new THREE.TextureLoader();
 
 const earthTexture=textureLoader.load(
 "https://threejs.org/examples/textures/land_ocean_ice_cloud_2048.jpg"
 );
 
-const material=new THREE.MeshBasicMaterial({
-map:earthTexture
-});
+const cloudTexture=textureLoader.load(
+"https://threejs.org/examples/textures/planets/earth_clouds_1024.png"
+);
 
-const sphere=new THREE.Mesh(geometry,material);
-scene.add(sphere);
+/* Main Earth */
+const earthGeometry=new THREE.SphereGeometry(5,64,64);
+const earthMaterial=new THREE.MeshPhongMaterial({
+map:earthTexture,
+shininess:8
+});
+const earth=new THREE.Mesh(earthGeometry,earthMaterial);
+scene.add(earth);
+
+/* Clouds */
+const cloudGeometry=new THREE.SphereGeometry(5.06,64,64);
+const cloudMaterial=new THREE.MeshPhongMaterial({
+map:cloudTexture,
+transparent:true,
+opacity:0.35,
+depthWrite:false
+});
+const clouds=new THREE.Mesh(cloudGeometry,cloudMaterial);
+scene.add(clouds);
+
+/* Glow */
+const glowGeometry=new THREE.SphereGeometry(5.22,64,64);
+const glowMaterial=new THREE.MeshBasicMaterial({
+color:0x00ff66,
+transparent:true,
+opacity:0.06
+});
+const glow=new THREE.Mesh(glowGeometry,glowMaterial);
+scene.add(glow);
+
+/* Lights */
+const ambientLight=new THREE.AmbientLight(0x88ffbb,0.55);
+scene.add(ambientLight);
+
+const directionalLight=new THREE.DirectionalLight(0xffffff,1.1);
+directionalLight.position.set(8,3,10);
+scene.add(directionalLight);
+
+const greenLight=new THREE.PointLight(0x00ff66,0.8,50);
+greenLight.position.set(-10,-5,8);
+scene.add(greenLight);
 
 camera.position.z=10;
 
 function animate(){
 requestAnimationFrame(animate);
-sphere.rotation.y+=0.002;
-sphere.rotation.x+=0.0003;
+earth.rotation.y+=0.0022;
+earth.rotation.x+=0.00025;
+clouds.rotation.y+=0.0028;
+glow.rotation.y+=0.0015;
 renderer.render(scene,camera);
 }
 animate();
